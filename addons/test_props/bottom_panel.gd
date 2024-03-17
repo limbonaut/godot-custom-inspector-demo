@@ -1,4 +1,3 @@
-@uid("uid://nufhjtqxlv7v") # Generated automatically, do not modify.
 @tool
 extends Control
 
@@ -33,11 +32,13 @@ func _init() -> void:
 	var dump_data_tool := Button.new()
 	toolbar.add_child(dump_data_tool)
 	dump_data_tool.text = "Dump Data Object"
+	dump_data_tool.tooltip_text = "Print data object property values"
 	dump_data_tool.pressed.connect(_dump_data_object)
 
 	var refresh_tool := Button.new()
 	toolbar.add_child(refresh_tool)
 	refresh_tool.text = "Refresh"
+	refresh_tool.tooltip_text = "Recreate inspector property editors"
 	refresh_tool.pressed.connect(_update_inspector)
 
 	var scroll := ScrollContainer.new()
@@ -63,8 +64,13 @@ func _update_inspector() -> void:
 
 	for prop in data.get_property_list():
 		var ed: EditorProperty
-		ed = EditorInspector.instantiate_property_editor(data, prop["type"], prop["name"],
-				prop["hint"], prop["hint_string"], prop["usage"], false)
+		ed = EditorInspector.instantiate_property_editor(
+				data,
+				prop["type"],
+				prop["name"],
+				prop["hint"],
+				prop["hint_string"],
+				prop["usage"])
 		prop_vbox.add_child(ed)
 		ed.set_object_and_property(data, prop["name"])
 		ed.label = prop["name"]
@@ -84,6 +90,8 @@ func _dump_data_object() -> void:
 
 func _prop_changed(p_property: String, p_value, p_field: StringName, p_changing: bool) -> void:
 	data.set(p_property, p_value)
+	if typeof(p_value) >= TYPE_ARRAY:
+		map[p_property].update_property()
 
 
 func _prop_selected(p_path:String, p_focusable: int) -> void:

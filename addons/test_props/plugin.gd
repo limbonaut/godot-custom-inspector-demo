@@ -1,4 +1,3 @@
-@uid("uid://m7ckiagabkyu") # Generated automatically, do not modify.
 @tool
 extends EditorPlugin
 

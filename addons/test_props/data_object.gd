@@ -1,6 +1,5 @@
-@uid("uid://cvxq2xqq1e7i4") # Generated automatically, do not modify.
 @tool
-extends RefCounted
+extends Object
 
 @export var bool_property: bool = false
 @export var string_property: String = "Hello, world!"
@@ -23,8 +22,8 @@ extends RefCounted
 @export var byte_array_property: PackedByteArray
 @export var int32_array_property: PackedInt32Array
 @export var int64_array_property: PackedInt64Array
-@export var float32_array_property: PackedInt32Array
-@export var float64_array_property: PackedInt64Array
+@export var float32_array_property: PackedFloat32Array
+@export var float64_array_property: PackedFloat64Array
 @export var string_array_property: PackedStringArray
 @export var vec2_array_property: PackedVector2Array
 @export var vec3_array_property: PackedVector3Array
