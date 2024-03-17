@@ -1,5 +1,5 @@
 @tool
-extends Object
+extends RefCounted
 
 @export var bool_property: bool = false
 @export var string_property: String = "Hello, world!"
